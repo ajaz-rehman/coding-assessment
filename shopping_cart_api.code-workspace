@@ -1,11 +1,14 @@
 {
-  "folders": [
-	{
-		"path": "shopping_cart_api"
-	},
-	{
-		"path": "postgres"
-	}
-],
-  "settings": {}
+	"folders": [
+		{
+			"path": "shopping_cart_api"
+		},
+		{
+			"path": "postgres"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
 }
