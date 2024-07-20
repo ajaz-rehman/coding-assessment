@@ -7,6 +7,9 @@ defmodule ShoppingCartApiWeb.Router do
 
   scope "/api", ShoppingCartApiWeb do
     pipe_through :api
+
+    get "/inventory", InventoryController, :index
+    post "/inventory/confirm_purchase", InventoryController, :confirm_purchase
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
