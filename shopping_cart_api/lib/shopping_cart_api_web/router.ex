@@ -12,6 +12,12 @@ defmodule ShoppingCartApiWeb.Router do
     post "/inventory/confirm_purchase", InventoryController, :confirm_purchase
   end
 
+  use Plug.ErrorHandler
+
+  defp handle_errors(conn, %{reason: reason}) do
+    ShoppingCartApiWeb.ErrorHandler.call(conn, {:error, reason})
+  end
+
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:shopping_cart_api, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put

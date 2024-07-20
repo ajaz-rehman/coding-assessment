@@ -9,11 +9,8 @@ defmodule ShoppingCartApiWeb.InventoryController do
   end
 
   def confirm_purchase(conn, %{"items" => items}) do
-    case Inventory.confirm_purchase(items) do
-      {:ok, _} ->
-        send_resp(conn, :ok, "Purchase confirmed")
-      {:error, reason} ->
-        send_resp(conn, :unprocessable_entity, reason)
+    with {:ok, _} <- Inventory.confirm_purchase(items) do
+      json(conn, %{message: "Purchase confirmed"})
     end
   end
 end
