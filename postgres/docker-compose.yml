@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+    db:
+        image: postgres:alpine
+        volumes:
+            - db:/var/lib/postgresql/data
+        networks:
+            - network
+        ports:
+            - 5432:5432
+        env_file: postgres.env
+        restart: always
+
+    admin:
+        image: dpage/pgadmin4
+        volumes:
+            - admin:/var/lib/pgadmin
+        networks:
+            - network
+        ports:
+            - 8080:80
+        env_file: pgadmin.env
+        restart: always
+        depends_on:
+            - db
+
+networks:
+    network:
+
+volumes:
+    db:
+    admin:
