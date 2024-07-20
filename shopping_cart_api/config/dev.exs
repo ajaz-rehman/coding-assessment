@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :shopping_cart_api, ShoppingCartApi.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "admin",
+  password: "password",
   hostname: "localhost",
   database: "shopping_cart_api_dev",
   stacktrace: true,
