@@ -6,8 +6,8 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :shopping_cart_api, ShoppingCartApi.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "admin",
+  password: "password",
   hostname: "localhost",
   database: "shopping_cart_api_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
