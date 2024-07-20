@@ -1,0 +1,11 @@
+{
+  "folders": [
+	{
+		"path": "shopping_cart_api"
+	},
+	{
+		"path": "postgres"
+	}
+],
+  "settings": {}
+}
