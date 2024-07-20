@@ -1,4 +1,4 @@
-defmodule ShoppingCartApiWebWeb.ProductJSON do
+defmodule ShoppingCartApiWeb.InventoryJSON do
   alias ShoppingCartApi.Product
 
   def index(%{products: products}) do
