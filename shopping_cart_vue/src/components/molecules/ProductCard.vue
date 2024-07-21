@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import Card from "../atoms/Card.vue";
-import Button from "../atoms/Button.vue";
-</script>
-
 <template>
 	<Card>
 		<h2 class="text-lg font-semibold">{{ product.name }}</h2>
@@ -14,9 +9,15 @@ import Button from "../atoms/Button.vue";
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Card from "../atoms/Card.vue";
+import Button from "../atoms/Button.vue";
 
 export default defineComponent({
 	name: "ProductCard",
+	components: {
+		Card,
+		Button,
+	},
 	emits: ["add-to-cart"],
 	props: {
 		product: {
