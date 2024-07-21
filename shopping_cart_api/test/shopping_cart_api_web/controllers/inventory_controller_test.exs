@@ -18,8 +18,8 @@ defmodule ShoppingCartApiWeb.InventoryControllerTest do
     product
   end
 
-  describe @products_url do
-    test "get products when there's none", %{conn: conn} do
+  describe "products" do
+    test "get products when empty", %{conn: conn} do
       conn = get(conn, @products_url)
       response = json_response(conn, 200)["data"]
       assert response === []
