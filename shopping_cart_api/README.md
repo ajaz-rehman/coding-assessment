@@ -1,6 +1,6 @@
 # Shopping Cart REST API
 
-## Usage
+## Initial Setup
 
 Setup:
 
@@ -13,6 +13,8 @@ Running Server:
 ```shell
 mix phx.server
 ```
+
+## Other Commands
 
 Running Tests:
 
