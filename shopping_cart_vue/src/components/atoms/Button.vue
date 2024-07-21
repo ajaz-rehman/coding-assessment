@@ -12,7 +12,7 @@ export default {
 		variant: {
 			type: String,
 			default: "blue",
-			validator: value => ["blue", "green", "red"].includes(value),
+			validator: (value: string) => ["blue", "green", "red"].includes(value),
 		},
 		outlined: {
 			type: Boolean,

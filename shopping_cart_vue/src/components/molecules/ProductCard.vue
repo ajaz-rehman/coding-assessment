@@ -24,8 +24,8 @@ export default {
 			required: true,
 		},
 	},
-	setup(props, { emit }) {
-		const addToCart = inject("addToCart");
+	setup(props) {
+		const addToCart = inject<Function>("addToCart");
 
 		const onAddToCart = () => {
 			if (addToCart) {

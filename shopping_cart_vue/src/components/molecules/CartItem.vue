@@ -1,12 +1,12 @@
 <template>
 	<div class="flex justify-between items-center">
-		<span>{{ product.name }} - ${{ product.price }} x {{ quantity }}</span>
+		<span>{{ product.name }} - ${{ price }}</span>
 		<Button @click="onRemoveFromCart" variant="red" outlined>Remove</Button>
 	</div>
 </template>
 
 <script lang="ts">
-import { inject } from "vue";
+import { inject, computed } from "vue";
 
 export default {
 	props: {
@@ -17,11 +17,11 @@ export default {
 		quantity: {
 			type: Number,
 			required: true,
-			validator: value => value >= 0,
+			validator: (value: number) => value >= 0,
 		},
 	},
 	setup(props) {
-		const removeFromCart = inject("removeFromCart");
+		const removeFromCart = inject<Function>("removeFromCart");
 
 		const onRemoveFromCart = () => {
 			if (removeFromCart) {
@@ -29,7 +29,10 @@ export default {
 			}
 		};
 
+		const price = computed(() => props.product.price * props.quantity);
+
 		return {
+			price,
 			onRemoveFromCart,
 		};
 	},

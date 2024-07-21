@@ -5,6 +5,7 @@
 </template>
 
 <script lang="ts">
+import { Product } from "../../types";
 import ProductCard from "@components/molecules/ProductCard.vue";
 
 export default {
@@ -14,7 +15,7 @@ export default {
 	},
 	props: {
 		products: {
-			type: Array,
+			type: Array<Product>,
 			required: true,
 		},
 	},
