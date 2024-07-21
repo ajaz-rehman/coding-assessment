@@ -35,11 +35,11 @@ mix ecto.reset
 Get Products:
 
 ```shell
-/api/inventory/products
+GET /api/inventory/products
 ```
 
 Confirm Purchase:
 
 ```shell
-/api/inventory/confirm_purchase
+POST /api/inventory/confirm_purchase
 ```
