@@ -6,7 +6,7 @@ defmodule ShoppingCartApi.Inventory do
     Repo.all(Product)
   end
 
-  def get_product!(id), do: Repo.get!(Product, id)
+  def get_product(id), do: Repo.get(Product, id)
 
   def create_product(attrs \\ %{}) do
     %Product{}
@@ -27,11 +27,16 @@ defmodule ShoppingCartApi.Inventory do
   def confirm_purchase(items) do
     Repo.transaction(fn ->
       Enum.each(items, fn %{"id" => id, "quantity" => quantity} ->
-        product = get_product!(id)
+        product = get_product(id)
+
+        if product == nil do
+          Repo.rollback(:not_found)
+        end
+
         new_quantity = product.quantity - quantity
 
         if new_quantity < 0 do
-          Repo.rollback({:error, "Not enough inventory for product #{product.name}"})
+          Repo.rollback(:forbidden)
         else
           update_product(product, %{quantity: new_quantity})
         end

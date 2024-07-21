@@ -12,10 +12,14 @@ defmodule ShoppingCartApiWeb.InventoryController do
     if Enum.empty?(items) do
       conn
       |> put_status(:bad_request)
-      |> json(%{message: "Items list cannot be empty"})
+      |> json(%{error: "No items to purchase"})
     else
       with {:ok, _} <- Inventory.confirm_purchase(items) do
         json(conn, %{message: "Purchase confirmed"})
+      else
+        {:error, reason} ->
+          put_status(conn, reason)
+          |> json(%{error: reason})
       end
     end
   end
