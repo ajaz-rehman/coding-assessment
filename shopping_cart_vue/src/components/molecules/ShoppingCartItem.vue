@@ -29,7 +29,11 @@ export default {
 			}
 		};
 
-		const price = computed(() => props.item.price * props.item.quantity);
+		const price = computed(() => {
+			const rawPrice = props.item.price * props.item.quantity;
+
+			return Math.round(rawPrice * 100) / 100;
+		});
 
 		return {
 			price,
