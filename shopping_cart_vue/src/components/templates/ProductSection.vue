@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import ProductList from "../organisms/ProductList.vue";
+import ProductList from "@components/organisms/ProductList.vue";
 
 export default {
 	name: "ProductSection",

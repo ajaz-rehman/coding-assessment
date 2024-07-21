@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import ProductCard from "../molecules/ProductCard.vue";
+import ProductCard from "@components/molecules/ProductCard.vue";
 
 export default {
 	name: "ProductList",

@@ -9,8 +9,8 @@
 
 <script lang="ts">
 import { inject } from "vue";
-import Card from "../atoms/Card.vue";
-import Button from "../atoms/Button.vue";
+import Card from "@components/atoms/Card.vue";
+import Button from "@components/atoms/Button.vue";
 
 export default {
 	name: "ProductCard",
