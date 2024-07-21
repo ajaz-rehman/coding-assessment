@@ -1,6 +1,6 @@
 <template>
 	<div class="container mx-auto px-4 py-8 flex flex-col gap-8">
-		<ProductSection :products="products" />
+		<ProductSection :products="products" :fetching="fetching" />
 		<ShoppingCartSection v-if="cartItems.length > 0" :items="cartItems" />
 	</div>
 </template>
@@ -9,16 +9,19 @@
 import axios from "axios";
 import { CartItem, Product } from "./types";
 import { ref, provide, onMounted } from "vue";
+import Spinner from "@components/atoms/Spinner.vue";
 import ProductSection from "@components/templates/ProductSection.vue";
 import ShoppingCartSection from "@components/templates/ShoppingCartSection.vue";
 
 export default {
 	name: "App",
 	components: {
+		Spinner,
 		ProductSection,
 		ShoppingCartSection,
 	},
 	setup() {
+		const fetching = ref(false);
 		const cartItems = ref<Product[]>([]);
 		const products = ref<CartItem[]>([]);
 
@@ -67,10 +70,13 @@ export default {
 
 		const fetchProducts = async () => {
 			try {
+				fetching.value = true;
 				const response = await axios.get("http://localhost:4000/api/inventory/products");
 				products.value = response.data.data;
 			} catch (error) {
 				console.error("Error fetching products:", error);
+			} finally {
+				fetching.value = false;
 			}
 		};
 
@@ -95,6 +101,7 @@ export default {
 		provide("purchaseItems", purchaseItems);
 
 		return {
+			fetching,
 			cartItems,
 			products,
 		};
