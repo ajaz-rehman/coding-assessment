@@ -8,11 +8,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
 import Card from "../atoms/Card.vue";
 import Button from "../atoms/Button.vue";
 
-export default defineComponent({
+export default {
 	name: "ProductCard",
 	components: {
 		Card,
@@ -25,10 +24,14 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	methods: {
-		onAddToCart() {
-			this.$emit("add-to-cart", this.product);
-		},
+	setup(props, { emit }) {
+		const onAddToCart = () => {
+			emit("add-to-cart", props.product);
+		};
+
+		return {
+			onAddToCart,
+		};
 	},
-});
+};
 </script>
