@@ -68,7 +68,7 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
     end
 
     test "products in database but invalid args", %{conn: conn} do
-      products = insert_products(@valid_products)
+      _products = insert_products(@valid_products)
       conn = post(conn, @base_url, @invalid_args)
       response = json_response(conn, 400)
       assert Map.has_key?(response, "error")
