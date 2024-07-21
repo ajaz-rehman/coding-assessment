@@ -3,7 +3,7 @@
 		<h2 class="text-lg font-semibold">{{ product.name }}</h2>
 		<p class="text-gray-600">{{ product.description }}</p>
 		<p class="text-green-600 font-bold mt-2">${{ product.price }}</p>
-		<Button @click="onAddToCart" class="mt-2">Add to Cart</Button>
+		<Button @click="onAddToCart" class="mt-2" :disabled="product.quantity <= 0">Add to Cart</Button>
 	</Card>
 </template>
 
