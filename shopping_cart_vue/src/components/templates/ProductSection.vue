@@ -6,10 +6,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
 import ProductList from "../organisms/ProductList.vue";
 
-export default defineComponent({
+export default {
 	name: "ProductSection",
 	emits: ["add-to-cart"],
 	components: {
@@ -26,10 +25,14 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	methods: {
-		addToCart(product) {
-			this.$parent.$emit("add-to-cart", product);
-		},
+	setup(props, { emit }) {
+		const addToCart = product => {
+			emit("add-to-cart", product);
+		};
+
+		return {
+			addToCart,
+		};
 	},
-});
+};
 </script>
