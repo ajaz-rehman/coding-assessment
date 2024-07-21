@@ -30,6 +30,18 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
     Enum.map(inserts, fn {:ok, product} -> product end)
   end
 
+  def get_products() do
+    Inventory.list_products()
+  end
+
+  defp get_valid_args(products, quantity \\ 1) do
+    items = Enum.map(products, fn product ->
+      %{"product_id" => product.id, "quantity" => quantity}
+    end)
+
+    %{items: items}
+  end
+
   describe "confirm_purchase" do
     test "no arguments", %{conn: conn} do
       conn = post(conn, @base_url, @empty_args)
@@ -48,6 +60,14 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
       conn = post(conn, @base_url, @invalid_args)
       response = json_response(conn, 400)
       assert Map.has_key?(response, "error")
+    end
+
+    test "products in database and valid args", %{conn: conn} do
+      products = insert_products(@valid_products)
+      valid_args = get_valid_args(products)
+      conn = post(conn, @base_url, valid_args)
+      response = json_response(conn, 200)
+      assert Map.has_key?(response, "message")
     end
   end
 end
