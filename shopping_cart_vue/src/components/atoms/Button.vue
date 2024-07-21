@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 
 export default defineComponent({
 	name: "Button",
@@ -24,27 +24,31 @@ export default defineComponent({
 			default: false,
 		},
 	},
-	computed: {
-		buttonClasses() {
-			if (this.outlined) {
+	setup(props) {
+		const buttonClasses = computed(() => {
+			if (props.outlined) {
 				return {
 					"btn rounded px-3 py-1": true,
-					"border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white": this.variant === "blue",
+					"border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white": props.variant === "blue",
 					"border border-green-500 text-green-500 hover:bg-green-500 hover:text-white":
-						this.variant === "green",
-					"border border-red-500 text-red-500 hover:bg-red-500 hover:text-white": this.variant === "red",
-					"cursor-not-allowed opacity-50": this.disabled,
+						props.variant === "green",
+					"border border-red-500 text-red-500 hover:bg-red-500 hover:text-white": props.variant === "red",
+					"cursor-not-allowed opacity-50": props.disabled,
 				};
 			}
 
 			return {
 				"btn rounded px-3 py-1": true,
-				"bg-blue-500 text-white hover:bg-blue-600": this.variant === "blue",
-				"bg-green-500 text-white hover:bg-green-600": this.variant === "green",
-				"bg-red-500 text-white hover:bg-red-600": this.variant === "red",
-				"cursor-not-allowed opacity-50": this.disabled,
+				"bg-blue-500 text-white hover:bg-blue-600": props.variant === "blue",
+				"bg-green-500 text-white hover:bg-green-600": props.variant === "green",
+				"bg-red-500 text-white hover:bg-red-600": props.variant === "red",
+				"cursor-not-allowed opacity-50": props.disabled,
 			};
-		},
+		});
+
+		return {
+			buttonClasses,
+		};
 	},
 });
 </script>
