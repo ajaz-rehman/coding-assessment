@@ -8,5 +8,5 @@ This application has 3 main components and you should run them in this order:
 
 You'll find detailed instructions inside each of these directories to run the application.
 
-**NOTE**: If you're using VSCode, you can open this directory as a Workspace to easily navigate the contexts of each
+**NOTE**: If you're using VSCode, you can open this directory as a Workspace to easily navigate the context of each
 directory.
