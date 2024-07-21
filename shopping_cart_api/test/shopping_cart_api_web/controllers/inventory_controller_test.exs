@@ -13,10 +13,24 @@ defmodule ShoppingCartApiWeb.InventoryControllerTest do
   }
   @invalid_attrs %{name: nil, description: nil, price: nil, quantity: nil}
 
+  defp insert_product(attrs) do
+    {:ok, product} = Inventory.create_product(attrs)
+    product
+  end
+
   describe @products_url do
     test "get products when there's none", %{conn: conn} do
       conn = get(conn, @products_url)
-      assert json_response(conn, 200)["data"] == []
+      response = json_response(conn, 200)["data"]
+      assert response === []
+    end
+
+    test "get products when there's one", %{conn: conn} do
+      insert_product(@valid_attrs)
+      conn = get(conn, @products_url)
+      response = json_response(conn, 200)["data"]
+      assert length(response) === 1
+      assert Map.get(hd(response), "name") === @valid_attrs[:name]
     end
   end
 end
