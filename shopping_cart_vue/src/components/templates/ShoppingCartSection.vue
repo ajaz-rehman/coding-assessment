@@ -5,7 +5,7 @@
 			<ShoppingCartItemList :items="items" />
 			<div class="flex gap-2 items-center justify-between sm:justify-end">
 				<p class="font-bold">Total: ${{ total }}</p>
-				<Button @click="onPurchaseItems" variant="green">Purchase</Button>
+				<Button @click="onPurchaseItems" variant="green" :disabled="submitting">Purchase</Button>
 			</div>
 		</div>
 	</div>
@@ -23,6 +23,11 @@ export default {
 		items: {
 			type: Array<CartItem>,
 			required: true,
+		},
+		submitting: {
+			type: Boolean,
+			required: false,
+			default: false,
 		},
 	},
 	components: {

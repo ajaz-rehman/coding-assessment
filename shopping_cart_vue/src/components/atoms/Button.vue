@@ -32,7 +32,7 @@ export default {
 					"border border-green-500 text-green-500 hover:bg-green-500 hover:text-white":
 						props.variant === "green",
 					"border border-red-500 text-red-500 hover:bg-red-500 hover:text-white": props.variant === "red",
-					"cursor-not-allowed opacity-50": props.disabled,
+					"cursor-not-allowed opacity-50 pointer-events-none": props.disabled,
 				};
 			}
 
@@ -41,7 +41,7 @@ export default {
 				"bg-blue-500 text-white hover:bg-blue-600": props.variant === "blue",
 				"bg-green-500 text-white hover:bg-green-600": props.variant === "green",
 				"bg-red-500 text-white hover:bg-red-600": props.variant === "red",
-				"cursor-not-allowed opacity-50": props.disabled,
+				"cursor-not-allowed opacity-50 pointer-events-none": props.disabled,
 			};
 		});
 

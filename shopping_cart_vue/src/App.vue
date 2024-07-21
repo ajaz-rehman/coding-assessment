@@ -1,7 +1,7 @@
 <template>
 	<div class="container mx-auto px-4 py-8 flex flex-col gap-8">
 		<ProductSection :products="products" :fetching="fetching" />
-		<ShoppingCartSection v-if="cartItems.length > 0" :items="cartItems" />
+		<ShoppingCartSection v-if="cartItems.length > 0" :items="cartItems" :submitting="submitting" />
 	</div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
 	},
 	setup() {
 		const fetching = ref(false);
+		const submitting = ref(false);
 		const cartItems = ref<Product[]>([]);
 		const products = ref<CartItem[]>([]);
 
@@ -82,6 +83,7 @@ export default {
 
 		const purchaseItems = async (purchaseItems: CartItem[]) => {
 			try {
+				submitting.value = true;
 				const items = purchaseItems.map(item => ({ product_id: item.id, quantity: item.quantity }));
 				await axios.post("http://localhost:4000/api/inventory/confirm_purchase", { items });
 				clearCart();
@@ -89,6 +91,8 @@ export default {
 			} catch (error) {
 				console.error("Error confirming purchase:", error);
 				alert("Error confirming purchase. Please try again.");
+			} finally {
+				submitting.value = false;
 			}
 		};
 
@@ -102,6 +106,7 @@ export default {
 
 		return {
 			fetching,
+			submitting,
 			cartItems,
 			products,
 		};
