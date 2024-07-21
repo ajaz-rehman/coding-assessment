@@ -42,4 +42,17 @@ Confirm Purchase:
 
 ```shell
 POST /api/inventory/confirm_purchase
+
+{
+    "items": [
+        {
+            "product_id": 1,
+            "quantity": 5
+        },
+        {
+            "product_id": 2,
+            "quantity": 10
+        },
+    ]
+}
 ```
