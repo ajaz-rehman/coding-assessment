@@ -14,6 +14,12 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
     ]
   }
 
+  @missing_args %{
+    "items" => [
+      %{"product_id" => 1}
+    ]
+  }
+
   @valid_args %{
     "items" => [
       %{"product_id" => 1, "quantity" => 1}
@@ -45,6 +51,12 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
   describe "confirm_purchase" do
     test "no arguments", %{conn: conn} do
       conn = post(conn, @base_url, @empty_args)
+      response = json_response(conn, 400)
+      assert Map.has_key?(response, "error")
+    end
+
+    test "missing arguments", %{conn: conn} do
+      conn = post(conn, @base_url, @missing_args)
       response = json_response(conn, 400)
       assert Map.has_key?(response, "error")
     end
