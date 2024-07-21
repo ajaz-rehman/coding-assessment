@@ -8,7 +8,7 @@ Setup Dependencies:
 npm install
 ```
 
-Running Application:
+Run Application:
 
 ```shell
 npm run dev
