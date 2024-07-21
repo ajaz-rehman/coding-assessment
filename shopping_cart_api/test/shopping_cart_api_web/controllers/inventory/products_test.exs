@@ -2,7 +2,7 @@ defmodule ShoppingCartApiWeb.InventoryControllerProductsTest do
   use ShoppingCartApiWeb.ConnCase
   alias ShoppingCartApi.Inventory
 
-  @products_url "/api/inventory/products"
+  @base_url "/api/inventory/products"
 
   @valid_attrs %{name: "Test Product", description: "A test product", price: 9.99, quantity: 10}
 
@@ -19,7 +19,7 @@ defmodule ShoppingCartApiWeb.InventoryControllerProductsTest do
   describe "products" do
     test "get products when there's one", %{conn: conn} do
       product = insert_product(@valid_attrs)
-      conn = get(conn, @products_url)
+      conn = get(conn, @base_url)
       response = json_response(conn, 200)["data"]
       assert length(response) === 1
       assert Map.get(hd(response), "name") === @valid_attrs[:name]
@@ -27,7 +27,7 @@ defmodule ShoppingCartApiWeb.InventoryControllerProductsTest do
     end
 
     test "get products when empty", %{conn: conn} do
-      conn = get(conn, @products_url)
+      conn = get(conn, @base_url)
       response = json_response(conn, 200)["data"]
       assert response === []
     end
