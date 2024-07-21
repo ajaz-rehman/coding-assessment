@@ -40,9 +40,9 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
     Inventory.list_products()
   end
 
-  defp get_valid_args(products, quantity \\ 1) do
+  defp get_valid_args(products, quantity \\ nil) do
     items = Enum.map(products, fn product ->
-      %{"product_id" => product.id, "quantity" => quantity}
+      %{"product_id" => product.id, "quantity" => quantity || product.quantity}
     end)
 
     %{items: items}
@@ -84,7 +84,7 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
 
     test "products in database but not enough quantity", %{conn: conn} do
       products = insert_products(@valid_products)
-      valid_args = get_valid_args(products, 1000)
+      valid_args = get_valid_args(products, 100)
       conn = post(conn, @base_url, valid_args)
       response = json_response(conn, 403)
       assert Map.has_key?(response, "error")
