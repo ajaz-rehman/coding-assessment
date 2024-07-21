@@ -3,7 +3,7 @@
 		<h2 class="text-2xl font-bold mb-4">Shopping Cart</h2>
 		<div class="flex flex-col gap-4">
 			<ShoppingCartItemList :items="items" />
-			<div class="flex gap-2 items-center justify-end">
+			<div class="flex gap-2 items-center justify-between sm:justify-end">
 				<p class="font-bold">Total: ${{ total }}</p>
 				<Button @click="onPurchase" variant="green">Purchase</Button>
 			</div>

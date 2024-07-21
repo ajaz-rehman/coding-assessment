@@ -1,7 +1,7 @@
 <template>
-	<div class="flex justify-between items-center">
+	<div class="flex gap-2 justify-between sm:items-center flex-col sm:flex-row">
 		<span class="font-semibold">{{ item.name }}</span>
-		<div class="flex gap-2 items-center">
+		<div class="flex gap-2 items-center justify-between">
 			<span class="font-semibold">{{ item.price }} X {{ item.quantity }} = ${{ price }}</span>
 			<Button @click="onRemoveFromCart" variant="red" outlined>Remove</Button>
 		</div>
