@@ -1,23 +1,23 @@
 <template>
 	<div class="flex justify-between items-center">
-		<span>{{ product.name }} - ${{ price }}</span>
+		<span>{{ item.name }} - ${{ price }}</span>
 		<Button @click="onRemoveFromCart" variant="red" outlined>Remove</Button>
 	</div>
 </template>
 
 <script lang="ts">
 import { inject, computed } from "vue";
+import Button from "@components/atoms/Button.vue";
 
 export default {
+	name: "ShoppingCartItem",
+	components: {
+		Button,
+	},
 	props: {
-		product: {
+		item: {
 			type: Object,
 			required: true,
-		},
-		quantity: {
-			type: Number,
-			required: true,
-			validator: (value: number) => value >= 0,
 		},
 	},
 	setup(props) {
@@ -25,11 +25,11 @@ export default {
 
 		const onRemoveFromCart = () => {
 			if (removeFromCart) {
-				removeFromCart(props.product);
+				removeFromCart(props.item);
 			}
 		};
 
-		const price = computed(() => props.product.price * props.quantity);
+		const price = computed(() => props.item.price * props.item.quantity);
 
 		return {
 			price,
