@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h1 class="text-3xl font-bold mb-4">{{ title }}</h1>
-		<ProductList :products="products" @add-to-cart="addToCart" />
+		<ProductList :products="products" />
 	</div>
 </template>
 
@@ -10,7 +10,6 @@ import ProductList from "../organisms/ProductList.vue";
 
 export default {
 	name: "ProductSection",
-	emits: ["add-to-cart"],
 	components: {
 		ProductList,
 	},
@@ -24,15 +23,6 @@ export default {
 			type: Array,
 			required: true,
 		},
-	},
-	setup(props, { emit }) {
-		const addToCart = product => {
-			emit("add-to-cart", product);
-		};
-
-		return {
-			addToCart,
-		};
 	},
 };
 </script>

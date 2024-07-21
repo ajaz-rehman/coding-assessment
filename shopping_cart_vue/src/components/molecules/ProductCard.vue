@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts">
+import { inject } from "vue";
 import Card from "../atoms/Card.vue";
 import Button from "../atoms/Button.vue";
 
@@ -17,7 +18,6 @@ export default {
 		Card,
 		Button,
 	},
-	emits: ["add-to-cart"],
 	props: {
 		product: {
 			type: Object,
@@ -25,8 +25,12 @@ export default {
 		},
 	},
 	setup(props, { emit }) {
+		const addToCart = inject("addToCart");
+
 		const onAddToCart = () => {
-			emit("add-to-cart", props.product);
+			if (addToCart) {
+				addToCart(props.product);
+			}
 		};
 
 		return {
