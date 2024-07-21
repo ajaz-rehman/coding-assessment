@@ -17,6 +17,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
 	name: "ProductCard",
+	emits: ["add-to-cart"],
 	props: {
 		product: {
 			type: Object,
