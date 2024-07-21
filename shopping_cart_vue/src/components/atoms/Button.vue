@@ -1,5 +1,5 @@
 <template>
-	<button @click="onClick" :class="buttonClasses">
+	<button :class="buttonClasses">
 		<slot></slot>
 	</button>
 </template>
@@ -10,10 +10,6 @@ import { defineComponent } from "vue";
 export default defineComponent({
 	name: "Button",
 	props: {
-		onClick: {
-			type: Function,
-			required: false,
-		},
 		variant: {
 			type: String,
 			default: "blue",
@@ -48,11 +44,6 @@ export default defineComponent({
 				"bg-red-500 text-white hover:bg-red-600": this.variant === "red",
 				"cursor-not-allowed opacity-50": this.disabled,
 			};
-		},
-	},
-	methods: {
-		onClick() {
-			this.$emit("click");
 		},
 	},
 });
