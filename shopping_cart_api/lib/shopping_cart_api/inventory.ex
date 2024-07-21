@@ -26,8 +26,8 @@ defmodule ShoppingCartApi.Inventory do
 
   def confirm_purchase(items) do
     Repo.transaction(fn ->
-      Enum.each(items, fn %{"id" => id, "quantity" => quantity} ->
-        product = get_product(id)
+      Enum.each(items, fn %{"product_id" => product_id, "quantity" => quantity} ->
+        product = get_product(product_id)
 
         if product == nil do
           Repo.rollback(:not_found)

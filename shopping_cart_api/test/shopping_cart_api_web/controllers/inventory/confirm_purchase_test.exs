@@ -10,13 +10,13 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
 
   @invalid_args %{
     "items" => [
-      %{"id" => 1, "quantity" => 0}
+      %{"product_id" => 1, "quantity" => 0}
     ]
   }
 
   @valid_args %{
     "items" => [
-      %{"id" => 1, "quantity" => 1}
+      %{"product_id" => 1, "quantity" => 1}
     ]
   }
 
