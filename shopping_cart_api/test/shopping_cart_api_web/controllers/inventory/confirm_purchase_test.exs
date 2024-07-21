@@ -69,5 +69,13 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
       response = json_response(conn, 200)
       assert Map.has_key?(response, "message")
     end
+
+    test "products in database but not enough quantity", %{conn: conn} do
+      products = insert_products(@valid_products)
+      valid_args = get_valid_args(products, 1000)
+      conn = post(conn, @base_url, valid_args)
+      response = json_response(conn, 403)
+      assert Map.has_key?(response, "error")
+    end
   end
 end
