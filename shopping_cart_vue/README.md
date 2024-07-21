@@ -2,7 +2,7 @@
 
 ## Initial Setup
 
-Setup:
+Setup Dependencies:
 
 ```shell
 npm install
