@@ -10,6 +10,12 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
 
   @invalid_args %{
     "items" => [
+      %{"product_id" => 1, "quantity" => "hello"}
+    ]
+  }
+
+  @zero_quantity_args %{
+    "items" => [
       %{"product_id" => 1, "quantity" => 0}
     ]
   }
@@ -64,6 +70,13 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
     test "products not in database", %{conn: conn} do
       conn = post(conn, @base_url, @valid_args)
       response = json_response(conn, 404)
+      assert Map.has_key?(response, "error")
+    end
+
+    test "products in database but zero quantity args", %{conn: conn} do
+      _products = insert_products(@valid_products)
+      conn = post(conn, @base_url, @zero_quantity_args)
+      response = json_response(conn, 400)
       assert Map.has_key?(response, "error")
     end
 
