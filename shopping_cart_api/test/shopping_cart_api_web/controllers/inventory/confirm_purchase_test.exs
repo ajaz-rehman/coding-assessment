@@ -37,7 +37,7 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
       assert Map.has_key?(response, "error")
     end
 
-    test "product not in database", %{conn: conn} do
+    test "products not in database", %{conn: conn} do
       conn = post(conn, @base_url, @valid_args)
       response = json_response(conn, 404)
       assert Map.has_key?(response, "error")
@@ -45,7 +45,6 @@ defmodule ShoppingCartApiWeb.InventoryControllerConfirmPurchaseTest do
 
     test "products in database but invalid args", %{conn: conn} do
       products = insert_products(@valid_products)
-      IO.inspect(products)
       conn = post(conn, @base_url, @invalid_args)
       response = json_response(conn, 400)
       assert Map.has_key?(response, "error")
