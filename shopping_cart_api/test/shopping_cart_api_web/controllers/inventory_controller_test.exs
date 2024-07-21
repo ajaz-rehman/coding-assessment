@@ -18,19 +18,25 @@ defmodule ShoppingCartApiWeb.InventoryControllerTest do
     product
   end
 
-  describe "products" do
-    test "get products when empty", %{conn: conn} do
-      conn = get(conn, @products_url)
-      response = json_response(conn, 200)["data"]
-      assert response === []
-    end
+  defp delete_product(product) do
+    {:ok, product} = Inventory.delete_product(product)
+    product
+  end
 
+  describe "products" do
     test "get products when there's one", %{conn: conn} do
-      insert_product(@valid_attrs)
+      product = insert_product(@valid_attrs)
       conn = get(conn, @products_url)
       response = json_response(conn, 200)["data"]
       assert length(response) === 1
       assert Map.get(hd(response), "name") === @valid_attrs[:name]
+      delete_product(product)
+    end
+
+    test "get products when empty", %{conn: conn} do
+      conn = get(conn, @products_url)
+      response = json_response(conn, 200)["data"]
+      assert response === []
     end
   end
 end
