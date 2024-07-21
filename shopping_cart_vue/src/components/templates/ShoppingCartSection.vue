@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { computed } from "vue";
-import CartItem from "@/types/CartItem";
+import { CartItem } from "../../types";
 import Button from "@/components/atoms/Button.vue";
 import ShoppingCartItemList from "@/components/organisms/ShoppingCartItemList.vue";
 
