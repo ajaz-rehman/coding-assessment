@@ -14,6 +14,8 @@ Running Server:
 mix phx.server
 ```
 
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
 ## Other Commands
 
 Running Tests:
@@ -28,4 +30,16 @@ Resetting Database:
 mix ecto.reset
 ```
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Endpoints
+
+Get Products:
+
+```shell
+/api/inventory/products
+```
+
+Confirm Purchase:
+
+```shell
+/api/inventory/confirm_purchase
+```
