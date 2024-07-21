@@ -4,6 +4,9 @@
 			"path": "shopping_cart_api"
 		},
 		{
+			"path": "shopping_cart_vue"
+		},
+		{
 			"path": "postgres"
 		},
 		{
