@@ -5,15 +5,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { computed } from "vue";
 
-export default defineComponent({
-	name: "Button",
+export default {
 	props: {
 		variant: {
 			type: String,
 			default: "blue",
-			validator: (value: string) => ["blue", "green", "red"].includes(value),
+			validator: value => ["blue", "green", "red"].includes(value),
 		},
 		outlined: {
 			type: Boolean,
@@ -50,5 +49,5 @@ export default defineComponent({
 			buttonClasses,
 		};
 	},
-});
+};
 </script>
